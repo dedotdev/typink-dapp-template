@@ -4,17 +4,27 @@ import ReactDOM from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import App from '@/App';
+import { AppProvider } from '@/providers/AppProvider.tsx';
 import { theme } from '@/theme';
 import { deployments } from 'contracts/deployments';
 import { NetworkId, TypinkProvider } from 'typink';
-import { AppProvider } from '@/providers/AppProvider.tsx';
+import { development } from 'typink/networks/development';
+import { alephZeroTestnet, popTestnet } from 'typink/networks/testnet';
 
 const DEFAULT_CALLER = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'; // Alice
+const SUPPORTED_NETWORK = [popTestnet, alephZeroTestnet];
+if (process.env.NODE_ENV === 'development') {
+  SUPPORTED_NETWORK.push(development);
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <ChakraProvider theme={theme}>
-    <TypinkProvider deployments={deployments} defaultCaller={DEFAULT_CALLER} defaultNetworkId={NetworkId.POP_TESTNET}>
+    <TypinkProvider
+      deployments={deployments}
+      defaultCaller={DEFAULT_CALLER}
+      defaultNetworkId={NetworkId.POP_TESTNET}
+      supportedNetworks={SUPPORTED_NETWORK}>
       <AppProvider>
         <App />
         <ToastContainer

@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Spinner, useMediaQuery } from '@chakra-ui/react';
-import { NetworkId, SUPPORTED_NETWORKS, useTypink } from 'typink';
+import { NetworkId, useTypink } from 'typink';
 
 function NetworkStatusIndicator() {
   const { ready } = useTypink();
@@ -12,7 +12,7 @@ function NetworkStatusIndicator() {
 }
 
 export default function NetworkSelection() {
-  const { network, setNetworkId } = useTypink();
+  const { network, setNetworkId, supportedNetworks } = useTypink();
   const [smallest] = useMediaQuery('(max-width: 325px)');
 
   return (
@@ -28,7 +28,7 @@ export default function NetworkSelection() {
         </Flex>
       </MenuButton>
       <MenuList>
-        {Object.values(SUPPORTED_NETWORKS).map((one) => (
+        {Object.values(supportedNetworks).map((one) => (
           <MenuItem
             key={one.id}
             onClick={() => setNetworkId(one.id as NetworkId)}

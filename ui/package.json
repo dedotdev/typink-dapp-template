@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0",
     "react-toastify": "^9.1.1",
     "react-use": "^17.4.0",
-    "typink": "0.0.1-next.dd1d772b.23"
+    "typink": "0.0.1-next.5dd1f24c.24"
   },
   "devDependencies": {
     "@dedot/chaintypes": "^0.35.0",
