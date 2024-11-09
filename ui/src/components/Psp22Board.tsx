@@ -2,14 +2,13 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Divider, H
 import { useMemo } from 'react';
 import WalletSelection from '@/components/dialog/WalletSelection.tsx';
 import PendingText from '@/components/shared/PendingText.tsx';
+import { useApp } from '@/providers/AppProvider.tsx';
 import { formatBalance } from '@/utils/string.ts';
-import { ContractId } from 'contracts/deployments';
-import { Psp22ContractApi } from 'contracts/types/psp22';
-import { NetworkId, useContract, useContractQuery, useContractTx, useTypink } from 'typink';
 import { txToaster } from '@/utils/txToaster.tsx';
+import { NetworkId, useContractQuery, useContractTx, useTypink } from 'typink';
 
 export default function Psp22Board() {
-  const { contract } = useContract<Psp22ContractApi>(ContractId.PSP22);
+  const { psp22Contract: contract } = useApp();
   const { defaultCaller, selectedAccount, networkId } = useTypink();
   const mintable = useMemo(() => networkId === NetworkId.ALEPHZERO_TESTNET, [networkId]);
   const mintTx = useContractTx(contract, 'psp22MintableMint');
