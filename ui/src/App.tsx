@@ -6,6 +6,7 @@ import Psp22Board from '@/components/Psp22Board.tsx';
 import BalanceInsufficientAlert from '@/components/shared/BalanceInsufficientAlert.tsx';
 import MainFooter from '@/components/shared/MainFooter';
 import MainHeader from '@/components/shared/MainHeader';
+import { BlockInfo } from '@/components/shared/BlockInfo.tsx';
 
 function App() {
   const tab = useSearchParam('tab');
@@ -22,7 +23,8 @@ function App() {
       <MainHeader />
       <Box maxWidth='container.md' mx='auto' my={4} px={4} flex={1} w='full'>
         <BalanceInsufficientAlert />
-        <Tabs index={index} onChange={handleTabsChange}>
+        <BlockInfo />
+        <Tabs mt={4} index={index} onChange={handleTabsChange}>
           <TabList>
             <Tab>Greeter Contract</Tab>
             <Tab>PSP22 Contract</Tab>

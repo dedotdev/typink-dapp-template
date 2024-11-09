@@ -1,6 +1,5 @@
-import { useTypink } from 'typink';
 import { useEffect, useState } from 'react';
-import { DedotClient, PinnedBlock } from 'dedot';
+import { useTypink } from 'typink';
 
 interface BlockInfo {
   bestBlock?: number;
@@ -23,41 +22,39 @@ export function useBlockInfo(): BlockInfo {
     let unsub1: any, unsub2: any;
     let done = false;
 
-    if (client instanceof DedotClient) {
-      unsub1 = client.chainHead.on('bestBlock', (block: PinnedBlock) => {
-        setBestBlock(block.number);
-      });
+    //   unsub1 = client.chainHead.on('bestBlock', (block: PinnedBlock) => {
+    //     setBestBlock(block.number);
+    //   });
+    //
+    //   unsub2 = client.chainHead.on('finalizedBlock', (block: PinnedBlock) => {
+    //     setFinalizedBlock(block.number);
+    //   });
 
-      unsub2 = client.chainHead.on('finalizedBlock', (block: PinnedBlock) => {
-        setFinalizedBlock(block.number);
-      });
-    } else {
-      client.rpc
-        .chain_subscribeNewHeads((newHead) => {
-          setBestBlock(newHead.number);
-        })
-        .then((unsub) => {
-          if (done) {
-            unsub().catch(console.error);
-          } else {
-            unsub1 = unsub;
-          }
-        })
-        .catch(console.error);
+    client.rpc
+      .chain_subscribeNewHeads((newHead) => {
+        setBestBlock(newHead.number);
+      })
+      .then((unsub) => {
+        if (done) {
+          unsub().catch(console.error);
+        } else {
+          unsub1 = unsub;
+        }
+      })
+      .catch(console.error);
 
-      client.rpc
-        .chain_subscribeFinalizedHeads((newHead) => {
-          setFinalizedBlock(newHead.number);
-        })
-        .then((unsub) => {
-          if (done) {
-            unsub().catch(console.error);
-          } else {
-            unsub2 = unsub;
-          }
-        })
-        .catch(console.error);
-    }
+    client.rpc
+      .chain_subscribeFinalizedHeads((newHead) => {
+        setFinalizedBlock(newHead.number);
+      })
+      .then((unsub) => {
+        if (done) {
+          unsub().catch(console.error);
+        } else {
+          unsub2 = unsub;
+        }
+      })
+      .catch(console.error);
 
     return () => {
       done = true;
@@ -66,5 +63,5 @@ export function useBlockInfo(): BlockInfo {
     };
   }, [client]);
 
-  return { bestBlock, finalizedBlock}
+  return { bestBlock, finalizedBlock };
 }
