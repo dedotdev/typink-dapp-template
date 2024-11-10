@@ -109,7 +109,7 @@ export default function Psp22Board() {
         </Box>
         {selectedAccount && (
           <Box mt={4}>
-            <Button size='sm' onClick={mintNewToken} isLoading={mintTx.isInProgress} isDisabled={!mintable}>
+            <Button size='sm' onClick={mintNewToken} isLoading={mintTx.inBestBlockProgress} isDisabled={!mintable}>
               Mint 100 {tokenSymbol}
             </Button>
             {!mintable && (

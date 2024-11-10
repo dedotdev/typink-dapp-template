@@ -5535,6 +5535,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"typink@npm:0.0.1-next.0f9ce48b.27":
+  version: 0.0.1-next.0f9ce48b.27
+  resolution: "typink@npm:0.0.1-next.0f9ce48b.27"
+  dependencies:
+    dedot: "npm:^0.6.0"
+    react: "npm:^18.3.1"
+    react-use: "npm:^17.5.1"
+  checksum: 10/05528b8f767cf2f52109bdfb285dffbce0d5223c9e2ddd813fe6b76d8baee477d30ecf20d14672b8d3c92e27e0db18a6f593afd8efd706b0d778f2daf294cf65
+  languageName: node
+  linkType: hard
+
 "typink@npm:0.0.1-next.5dd1f24c.24":
   version: 0.0.1-next.5dd1f24c.24
   resolution: "typink@npm:0.0.1-next.5dd1f24c.24"
@@ -5582,7 +5593,7 @@ __metadata:
     react-toastify: "npm:^9.1.1"
     react-use: "npm:^17.4.0"
     rollup-plugin-analyzer: "npm:^4.0.0"
-    typink: "npm:0.0.1-next.5dd1f24c.24"
+    typink: "npm:0.0.1-next.0f9ce48b.27"
     vite: "npm:^5.2.0"
     vite-tsconfig-paths: "npm:^4.0.3"
     vitest: "npm:^0.34.6"

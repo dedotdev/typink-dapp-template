@@ -9,6 +9,14 @@ export type TxToaster = {
 export function txToaster(initialMessage: string = 'Signing transaction...'): TxToaster {
   const toastId = toast.info(initialMessage, { autoClose: false, isLoading: true });
 
+  const getBlockInfo = (status: TxStatus) => {
+    if (status.type === 'BestChainBlockIncluded' || status.type === 'Finalized') {
+      return `(#${status.value.blockNumber} / ${status.value.txIndex})`;
+    }
+
+    return '';
+  };
+
   const updateTxStatus = (status: TxStatus) => {
     let toastType: TypeOptions = 'default';
     let autoClose: boolean | number = false;
@@ -27,7 +35,9 @@ export function txToaster(initialMessage: string = 'Signing transaction...'): Tx
       render: (
         <div>
           <p>{toastMessage}</p>
-          <p style={{ fontSize: 12 }}>{status.type}</p>
+          <p style={{ fontSize: 12 }}>
+            {status.type} {getBlockInfo(status)}
+          </p>
         </div>
       ),
       type: toastType,
