@@ -7,7 +7,7 @@ import App from '@/App';
 import { AppProvider } from '@/providers/AppProvider.tsx';
 import { theme } from '@/theme';
 import { deployments } from 'contracts/deployments';
-import { NetworkId, TypinkProvider } from 'typink';
+import { TypinkProvider } from 'typink';
 import { development } from 'typink/networks/development';
 import { alephZeroTestnet, popTestnet } from 'typink/networks/testnet';
 
@@ -23,7 +23,7 @@ root.render(
     <TypinkProvider
       deployments={deployments}
       defaultCaller={DEFAULT_CALLER}
-      defaultNetworkId={NetworkId.POP_TESTNET}
+      defaultNetworkId={popTestnet.id}
       supportedNetworks={SUPPORTED_NETWORK}>
       <AppProvider>
         <App />

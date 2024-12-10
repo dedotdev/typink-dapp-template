@@ -5,9 +5,9 @@ import { useBalance, useTypink } from 'typink';
 const DEFAULT_FAUCET_URL = 'https://github.com/use-ink/contracts-ui/blob/master/FAUCETS.md';
 
 export default function BalanceInsufficientAlert() {
-  const { network, selectedAccount } = useTypink();
+  const { network, connectedAccount } = useTypink();
 
-  const balance = useBalance(selectedAccount?.address);
+  const balance = useBalance(connectedAccount?.address);
 
   if (balance === undefined || balance.free > 0n) return null;
 

@@ -8,11 +8,11 @@ import { txToaster } from '@/utils/txToaster.tsx';
 import { useBalance, useContractTx, useTypink, useWatchContractEvent, useWatchContractQuery } from 'typink';
 
 export default function GreetBoard() {
-  const { selectedAccount } = useTypink();
+  const { connectedAccount } = useTypink();
   const { greeterContract: contract } = useApp();
   const [message, setMessage] = useState('');
   const setMessageTx = useContractTx(contract, 'setMessage');
-  const balance = useBalance(selectedAccount?.address);
+  const balance = useBalance(connectedAccount?.address);
 
   const { data: greet, isLoading } = useWatchContractQuery({
     contract,
@@ -22,7 +22,7 @@ export default function GreetBoard() {
   const handleUpdateGreeting = async () => {
     if (!contract || !message) return;
 
-    if (!selectedAccount) {
+    if (!connectedAccount) {
       toast.info('Please connect to your wallet');
       return;
     }
@@ -63,8 +63,6 @@ export default function GreetBoard() {
     contract,
     'Greeted',
     useCallback((events) => {
-      // re-fetch the greeting message
-
       events.forEach((greetedEvent) => {
         const {
           name,

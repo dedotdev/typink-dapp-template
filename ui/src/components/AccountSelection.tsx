@@ -6,23 +6,23 @@ import { formatBalance, shortenAddress } from '@/utils/string.ts';
 import { useBalances, useTypink } from 'typink';
 
 export default function AccountSelection() {
-  const { accounts, selectedAccount, setSelectedAccount, signOut, network } = useTypink();
+  const { accounts, connectedAccount, setConnectedAccount, disconnect, network } = useTypink();
   const addresses = useMemo(() => accounts.map((a) => a.address), [accounts]);
   const balances = useBalances(addresses);
 
   useEffect(() => {
-    if (selectedAccount && accounts.map((one) => one.address).includes(selectedAccount.address)) {
+    if (connectedAccount && accounts.map((one) => one.address).includes(connectedAccount.address)) {
       return;
     }
 
-    setSelectedAccount(accounts[0]);
+    setConnectedAccount(accounts[0]);
   }, [accounts]);
 
-  if (!selectedAccount) {
+  if (!connectedAccount) {
     return <></>;
   }
 
-  const { name, address } = selectedAccount;
+  const { name, address } = connectedAccount;
 
   return (
     <Box>
@@ -46,7 +46,7 @@ export default function AccountSelection() {
               backgroundColor={one.address === address ? 'gray.200' : ''}
               gap={2}
               key={one.address}
-              onClick={() => setSelectedAccount(one)}>
+              onClick={() => setConnectedAccount(one)}>
               <Flex direction='column'>
                 <Text fontWeight='500'>{one.name}</Text>
 
@@ -63,7 +63,7 @@ export default function AccountSelection() {
             buttonLabel='Switch Wallet'
             buttonProps={{ color: 'primary.500' }}
           />
-          <MenuItem onClick={signOut} color='red.500'>
+          <MenuItem onClick={disconnect} color='red.500'>
             Sign Out
           </MenuItem>
         </MenuList>

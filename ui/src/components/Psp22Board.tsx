@@ -1,16 +1,14 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Divider, Heading } from '@chakra-ui/react';
-import { useMemo } from 'react';
+import { Box, Button, Divider, Heading } from '@chakra-ui/react';
 import WalletSelection from '@/components/dialog/WalletSelection.tsx';
 import PendingText from '@/components/shared/PendingText.tsx';
 import { useApp } from '@/providers/AppProvider.tsx';
 import { formatBalance } from '@/utils/string.ts';
 import { txToaster } from '@/utils/txToaster.tsx';
-import { NetworkId, useContractQuery, useContractTx, useTypink } from 'typink';
+import { useContractQuery, useContractTx, usePSP22Balance, useTypink } from 'typink';
 
 export default function Psp22Board() {
   const { psp22Contract: contract } = useApp();
-  const { defaultCaller, selectedAccount, networkId } = useTypink();
-  const mintable = useMemo(() => networkId === NetworkId.ALEPHZERO_TESTNET, [networkId]);
+  const { connectedAccount } = useTypink();
   const mintTx = useContractTx(contract, 'psp22MintableMint');
 
   const { data: tokenName, isLoading: loadingTokenName } = useContractQuery({
@@ -40,11 +38,10 @@ export default function Psp22Board() {
   const {
     data: myBalance,
     isLoading: loadingBalance,
-    refresh: refreshMyBalance,
-  } = useContractQuery({
-    contract,
-    fn: 'psp22BalanceOf',
-    args: [selectedAccount?.address || defaultCaller],
+  } = usePSP22Balance({
+    contractAddress: contract?.address?.address(),
+    address: connectedAccount?.address,
+    watch: true
   });
 
   const mintNewToken = async () => {
@@ -56,15 +53,17 @@ export default function Psp22Board() {
         args: [BigInt(100 * Math.pow(10, tokenDecimal))],
         callback: ({ status }) => {
           console.log(status);
+
+          if (status.type === 'BestChainBlockIncluded') {
+            refreshTotalSupply();
+          }
+
           toaster.updateTxStatus(status);
         },
       });
     } catch (e: any) {
       console.error(e);
       toaster.onError(e);
-    } finally {
-      refreshMyBalance();
-      refreshTotalSupply();
     }
   };
 
@@ -99,7 +98,7 @@ export default function Psp22Board() {
         <Divider my={4} />
         <Box>
           My Balance:{' '}
-          {selectedAccount ? (
+          {connectedAccount ? (
             <PendingText fontWeight='600' isLoading={loadingBalance}>
               {formatBalance(myBalance, tokenDecimal)} {tokenSymbol}
             </PendingText>
@@ -107,20 +106,11 @@ export default function Psp22Board() {
             <WalletSelection buttonProps={{ size: 'xs' }} />
           )}
         </Box>
-        {selectedAccount && (
+        {connectedAccount && (
           <Box mt={4}>
-            <Button size='sm' onClick={mintNewToken} isLoading={mintTx.inBestBlockProgress} isDisabled={!mintable}>
+            <Button size='sm' onClick={mintNewToken} isLoading={mintTx.inBestBlockProgress}>
               Mint 100 {tokenSymbol}
             </Button>
-            {!mintable && (
-              <Alert status='info' my={4}>
-                <AlertIcon />
-                <Box>
-                  <AlertTitle>Minting is currently not available on POP Network contract</AlertTitle>
-                  <AlertDescription>Please use Aleph Zero Testnet contract for minting tokens</AlertDescription>
-                </Box>
-              </Alert>
-            )}
           </Box>
         )}
       </Box>

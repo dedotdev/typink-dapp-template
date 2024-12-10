@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { ThemingProps } from '@chakra-ui/system';
-import { useTypink, Wallet } from 'typink';
+import { useTypink, useWallets, Wallet } from 'typink';
 
 interface WalletButtonProps {
   walletInfo: Wallet;
@@ -21,17 +21,17 @@ interface WalletButtonProps {
 
 const WalletButton = ({ walletInfo, afterSelectWallet }: WalletButtonProps) => {
   const { name, id, logo, ready, installed } = walletInfo;
-  const { enableWallet } = useTypink();
+  const { connectWallet } = useTypink();
 
-  const connectWallet = () => {
-    enableWallet(id);
+  const doConnectWallet = () => {
+    connectWallet(id);
 
     afterSelectWallet && afterSelectWallet();
   };
 
   return (
     <Button
-      onClick={connectWallet}
+      onClick={doConnectWallet}
       isLoading={installed && !ready}
       isDisabled={!installed}
       loadingText={name}
@@ -63,7 +63,7 @@ export default function WalletSelection({
   buttonProps,
 }: WalletSelectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { availableWallets } = useTypink();
+  const { wallets } = useWallets();
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function WalletSelection({
           <ModalCloseButton />
           <ModalBody mb={4}>
             <Stack>
-              {availableWallets.map((one) => (
+              {wallets.map((one) => (
                 <WalletButton key={one.id} walletInfo={one} afterSelectWallet={onClose} />
               ))}
             </Stack>
