@@ -9,9 +9,9 @@ import {
   ModalHeader,
   ModalOverlay,
   Stack,
+  ThemingProps,
   useDisclosure,
 } from '@chakra-ui/react';
-import { ThemingProps } from '@chakra-ui/system';
 import { useTypink, useWallets, Wallet } from 'typink';
 
 interface WalletButtonProps {
