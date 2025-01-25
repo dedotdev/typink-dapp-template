@@ -1928,7 +1928,7 @@ __metadata:
   resolution: "contracts@workspace:contracts"
   dependencies:
     dedot: "npm:^0.6.1"
-    typink: "npm:0.0.1-alpha.2"
+    typink: "npm:0.0.1-alpha.3"
   languageName: unknown
   linkType: soft
 
@@ -4418,18 +4418,6 @@ __metadata:
     typescript: "npm:5.4.5"
   languageName: unknown
   linkType: soft
-
-"typink@npm:0.0.1-alpha.2":
-  version: 0.0.1-alpha.2
-  resolution: "typink@npm:0.0.1-alpha.2"
-  dependencies:
-    dedot: "npm:^0.6.1"
-    fast-deep-equal: "npm:^3.1.3"
-    react: "npm:^18.3.1"
-    react-use: "npm:^17.6.0"
-  checksum: 10/dc26c30a7be2600e4aa23e446c1a2f66aefd065b1ec9817449c74e500ca49910985bf8b533429012baecfca48da354af7f4095bf0b9b75a2f098fee6e85f2e8e
-  languageName: node
-  linkType: hard
 
 "typink@npm:0.0.1-alpha.3":
   version: 0.0.1-alpha.3
