@@ -1,9 +1,8 @@
 import { Box, Button, Flex, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from '@chakra-ui/react';
 import { useEffect, useMemo } from 'react';
-import WalletSelection, { ButtonStyle } from '@/components/dialog/WalletSelection.tsx';
+import WalletSelection, { ButtonStyle } from '@/components/shared/WalletSelection.tsx';
 import { shortenAddress } from '@/utils/string.ts';
 import { formatBalance, useBalances, useTypink } from 'typink';
-
 
 function ConnectedWallet() {
   const { connectedWallet } = useTypink();
@@ -64,9 +63,7 @@ export default function AccountSelection() {
                 <Text fontWeight='500'>{one.name}</Text>
 
                 <Text fontSize='xs'>Address: {shortenAddress(one.address)}</Text>
-                <Text fontSize='xs'>
-                  Balance: {formatBalance(balances[one.address]?.free || 0, network)}
-                </Text>
+                <Text fontSize='xs'>Balance: {formatBalance(balances[one.address]?.free || 0, network)}</Text>
               </Flex>
             </MenuItem>
           ))}

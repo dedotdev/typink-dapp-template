@@ -10,9 +10,9 @@ import { deployments } from 'contracts/deployments';
 import { TypinkProvider, development, alephZeroTestnet, popTestnet } from 'typink';
 
 const DEFAULT_CALLER = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'; // Alice
-const SUPPORTED_NETWORK = [popTestnet, alephZeroTestnet];
+const SUPPORTED_NETWORKS = [popTestnet, alephZeroTestnet];
 if (process.env.NODE_ENV === 'development') {
-  SUPPORTED_NETWORK.push(development);
+  SUPPORTED_NETWORKS.push(development);
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -23,7 +23,7 @@ root.render(
       deployments={deployments}
       defaultCaller={DEFAULT_CALLER}
       defaultNetworkId={popTestnet.id}
-      supportedNetworks={SUPPORTED_NETWORK}>
+      supportedNetworks={SUPPORTED_NETWORKS}>
       <AppProvider>
         <App />
         <ToastContainer

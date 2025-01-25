@@ -1,8 +1,8 @@
 import { Box, Container, Flex, Image } from '@chakra-ui/react';
 import React from 'react';
-import AccountSelection from '@/components/AccountSelection.tsx';
-import WalletSelection from '@/components/dialog/WalletSelection.tsx';
+import AccountSelection from '@/components/shared/AccountSelection.tsx';
 import NetworkSelection from '@/components/shared/NetworkSelection.tsx';
+import WalletSelection from '@/components/shared/WalletSelection.tsx';
 import { useTypink } from 'typink';
 
 export default function MainHeader() {

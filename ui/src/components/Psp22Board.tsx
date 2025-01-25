@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Heading } from '@chakra-ui/react';
-import WalletSelection from '@/components/dialog/WalletSelection.tsx';
 import PendingText from '@/components/shared/PendingText.tsx';
+import WalletSelection from '@/components/shared/WalletSelection.tsx';
 import { useApp } from '@/providers/AppProvider.tsx';
 import { txToaster } from '@/utils/txToaster.tsx';
 import { formatBalance, useContractQuery, useContractTx, usePSP22Balance, useTypink } from 'typink';
