@@ -17,7 +17,7 @@ export default function GreetBoard() {
   const { data: greet, isLoading } = useContractQuery({
     contract,
     fn: 'greet',
-    watch: true
+    watch: true,
   });
 
   const handleUpdateGreeting = async () => {
