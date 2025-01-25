@@ -5,7 +5,8 @@
   "scripts": {
     "start": "../node_modules/.bin/vite --port 8080",
     "build": "../node_modules/.bin/tsc && vite build",
-    "preview": "../node_modules/.bin/vite preview"
+    "preview": "../node_modules/.bin/vite preview",
+    "clean": "rm -rf ./dist ./tsconfig.tsbuildinfo"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.2.5",
