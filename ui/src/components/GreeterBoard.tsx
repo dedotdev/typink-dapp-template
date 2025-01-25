@@ -5,7 +5,7 @@ import PendingText from '@/components/shared/PendingText.tsx';
 import { useApp } from '@/providers/AppProvider.tsx';
 import { shortenAddress } from '@/utils/string.ts';
 import { txToaster } from '@/utils/txToaster.tsx';
-import { useBalance, useContractTx, useTypink, useWatchContractEvent, useWatchContractQuery } from 'typink';
+import { useBalance, useContractQuery, useContractTx, useTypink, useWatchContractEvent } from 'typink';
 
 export default function GreetBoard() {
   const { connectedAccount } = useTypink();
@@ -14,9 +14,10 @@ export default function GreetBoard() {
   const setMessageTx = useContractTx(contract, 'setMessage');
   const balance = useBalance(connectedAccount?.address);
 
-  const { data: greet, isLoading } = useWatchContractQuery({
+  const { data: greet, isLoading } = useContractQuery({
     contract,
     fn: 'greet',
+    watch: true
   });
 
   const handleUpdateGreeting = async () => {

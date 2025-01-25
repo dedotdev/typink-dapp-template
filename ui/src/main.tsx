@@ -7,9 +7,7 @@ import App from '@/App';
 import { AppProvider } from '@/providers/AppProvider.tsx';
 import { theme } from '@/theme';
 import { deployments } from 'contracts/deployments';
-import { TypinkProvider } from 'typink';
-import { development } from 'typink/networks/development';
-import { alephZeroTestnet, popTestnet } from 'typink/networks/testnet';
+import { TypinkProvider, development, alephZeroTestnet, popTestnet } from 'typink';
 
 const DEFAULT_CALLER = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'; // Alice
 const SUPPORTED_NETWORK = [popTestnet, alephZeroTestnet];
@@ -21,6 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <ChakraProvider theme={theme}>
     <TypinkProvider
+      appName='Typink Dapp'
       deployments={deployments}
       defaultCaller={DEFAULT_CALLER}
       defaultNetworkId={popTestnet.id}
