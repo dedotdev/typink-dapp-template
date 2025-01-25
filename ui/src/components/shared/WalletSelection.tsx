@@ -81,7 +81,7 @@ export default function WalletSelection({
       <Modal onClose={onClose} size='sm' isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Select Wallet to Connect</ModalHeader>
+          <ModalHeader>Connect to your wallet</ModalHeader>
           <ModalCloseButton />
           <ModalBody mb={4}>
             <Stack>

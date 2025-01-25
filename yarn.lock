@@ -3104,6 +3104,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@talismn/connect-components@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "@talismn/connect-components@npm:1.1.9"
+  dependencies:
+    "@talismn/connect-ui": "npm:1.1.4"
+    "@talismn/connect-wallets": "npm:1.2.8"
+  peerDependencies:
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+  checksum: 10/13a021d48b2ad0265f18c9d556c24709906cff54b5cc5f51f39efb6e34771b0b729715f849e93d612751c311ab3bf6ab6266bea950ae44e4f0b36597376bfc05
+  languageName: node
+  linkType: hard
+
+"@talismn/connect-ui@npm:1.1.4, @talismn/connect-ui@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "@talismn/connect-ui@npm:1.1.4"
+  peerDependencies:
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+  checksum: 10/31e811673adeffb541899564f0692fdc31ce63e4b97bc67333b47ee6ff39d0160f99fc601f419cc67f5b3d5e564c7d8434bdf41e5bdb67a1a267d81c51269ffc
+  languageName: node
+  linkType: hard
+
+"@talismn/connect-wallets@npm:1.2.8, @talismn/connect-wallets@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@talismn/connect-wallets@npm:1.2.8"
+  peerDependencies:
+    "@polkadot/api": ">=9.3.3"
+    "@polkadot/extension-inject": ">=0.44.6"
+  checksum: 10/929ecdd2d57aa946bdea182e6c4c746853be982b4e67adc0b128aaf9754a09c640ba4bb157f95bebd6c144e8e01d1c235df1109b979a26625deff1fe4fd067fb
+  languageName: node
+  linkType: hard
+
 "@trivago/prettier-plugin-sort-imports@npm:^4.3.0":
   version: 4.3.0
   resolution: "@trivago/prettier-plugin-sort-imports@npm:4.3.0"
@@ -8126,6 +8159,9 @@ __metadata:
     "@subwallet-connect/react": "npm:^1.0.8"
     "@subwallet-connect/subwallet-polkadot": "npm:^1.0.8"
     "@subwallet-connect/talisman": "npm:^1.0.8"
+    "@talismn/connect-components": "npm:^1.1.9"
+    "@talismn/connect-ui": "npm:^1.1.4"
+    "@talismn/connect-wallets": "npm:^1.2.8"
     "@types/react": "npm:^18.3.1"
     "@types/react-dom": "npm:^18.3.1"
     "@vitejs/plugin-react": "npm:^3.1.0"

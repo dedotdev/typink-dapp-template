@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import App from '@/App';
 import { AppProvider } from '@/providers/AppProvider.tsx';
 import { SubConnectV2Provider, useSubConnectV2 } from '@/providers/SubConnectV2Provider.tsx';
+import { TalismanConnectProvider, useTalismanConnect } from '@/providers/TalismanConnectProvider.tsx';
 import { theme } from '@/theme';
 import { deployments } from 'contracts/deployments';
 import { TypinkProvider, development, alephZeroTestnet, popTestnet } from 'typink';
@@ -17,8 +18,45 @@ if (process.env.NODE_ENV === 'development') {
   SUPPORTED_NETWORKS.push(development);
 }
 
-function TypinkApp() {
-  const { wallet, connectedAccount } = useSubConnectV2();
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+// function SubConnectV2TypinkApp() {
+//   const { wallet, connectedAccount } = useSubConnectV2();
+//
+//   return (
+//     <ChakraProvider theme={theme}>
+//       <TypinkProvider
+//         appName='Typink Dapp'
+//         deployments={deployments}
+//         defaultCaller={DEFAULT_CALLER}
+//         defaultNetworkId={popTestnet.id}
+//         supportedNetworks={SUPPORTED_NETWORKS}
+//         signer={wallet?.signer}
+//         connectedAccount={connectedAccount}>
+//         <AppProvider>
+//           <App />
+//           <ToastContainer
+//             position='top-right'
+//             closeOnClick
+//             pauseOnHover
+//             theme='light'
+//             autoClose={5_000}
+//             hideProgressBar
+//             limit={2}
+//           />
+//         </AppProvider>
+//       </TypinkProvider>
+//     </ChakraProvider>
+//   );
+// }
+// root.render(
+//   <SubConnectV2Provider>
+//     <SubConnectV2TypinkApp />
+//   </SubConnectV2Provider>,
+// );
+
+function TalismanConnectTypinkApp() {
+  const { wallet, connectedAccount } = useTalismanConnect();
 
   return (
     <ChakraProvider theme={theme}>
@@ -47,9 +85,8 @@ function TypinkApp() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <SubConnectV2Provider>
-    <TypinkApp />
-  </SubConnectV2Provider>,
+  <TalismanConnectProvider>
+    <TalismanConnectTypinkApp />
+  </TalismanConnectProvider>,
 );
