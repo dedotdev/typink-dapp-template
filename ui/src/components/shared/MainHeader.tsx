@@ -1,12 +1,8 @@
 import { Box, Container, Flex, Image } from '@chakra-ui/react';
 import React from 'react';
 import AccountSelection from '@/components/shared/AccountSelection.tsx';
-import { AccountSelectionSubConnectV2 } from '@/components/shared/AccountSelectionSubConnectV2.tsx';
-import { AccountSelectionTalismanConnect } from '@/components/shared/AccountSelectionTalismanConnect.tsx';
 import NetworkSelection from '@/components/shared/NetworkSelection.tsx';
 import WalletSelection from '@/components/shared/WalletSelection.tsx';
-import { WalletSelectionSubConnectV2 } from '@/components/shared/WalletSelectionSubConnectV2.tsx';
-import { WalletSelectionTalismanConnect } from '@/components/shared/WalletSelectionTalismanConnect.tsx';
 import { useTypink } from 'typink';
 
 export default function MainHeader() {
@@ -30,7 +26,7 @@ export default function MainHeader() {
         </a>
         <Flex gap={2}>
           <NetworkSelection />
-          {signer ? <AccountSelectionTalismanConnect /> : <WalletSelectionTalismanConnect />}
+          {signer ? <AccountSelection /> : <WalletSelection />}
         </Flex>
       </Container>
     </Box>
