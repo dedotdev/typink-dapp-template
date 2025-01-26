@@ -18,7 +18,9 @@ export default function GreetBoard() {
     watch: true,
   });
 
-  const handleUpdateGreeting = async () => {
+  const handleUpdateGreeting = async (e: any) => {
+    e?.preventDefault();
+
     if (!contract || !message) return;
 
     const toaster = txToaster();
@@ -79,16 +81,19 @@ export default function GreetBoard() {
 
   return (
     <Box>
-      <Heading size='md'>Greeter Contract</Heading>
+      <Heading size='md' mb={2}>
+        Sample Greeter Contract
+      </Heading>
+      <Text>Send a greeting message to the world!</Text>
       <Flex my={4} gap={2}>
-        <Text>Greeting Message:</Text>
+        <Text>Message:</Text>
         <PendingText fontWeight='600' isLoading={isLoading} color='primary.500'>
           {greet}
         </PendingText>
       </Flex>
-      <form>
+      <form onSubmit={handleUpdateGreeting}>
         <FormControl>
-          <FormLabel>Update greeting message:</FormLabel>
+          <FormLabel>Update message:</FormLabel>
           <Input
             type='input'
             maxLength={50}
@@ -98,12 +103,7 @@ export default function GreetBoard() {
           />
           <FormHelperText>Max 50 characters</FormHelperText>
         </FormControl>
-        <Button
-          size='sm'
-          mt={4}
-          isDisabled={!message}
-          isLoading={setMessageTx.inBestBlockProgress}
-          onClick={handleUpdateGreeting}>
+        <Button type='submit' size='sm' mt={4} isDisabled={!message} isLoading={setMessageTx.inBestBlockProgress}>
           Update Greeting
         </Button>
       </form>
