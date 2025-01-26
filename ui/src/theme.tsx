@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+import { mode } from '@chakra-ui/theme-tools';
 
 const breakpoints = {
   sm: '30em', // 480px
@@ -29,14 +30,17 @@ export const theme = extendTheme({
     container: breakpoints,
   },
   styles: {
-    global: {
+    global: (props: any) => ({
       '*, *::before, *::after': {
         boxSizing: 'border-box',
       },
       a: {
         textUnderlineOffset: '2px',
       },
-    },
+      body: {
+        bg: mode('white', '#222')(props),
+      },
+    }),
   },
   components: {
     Button: {

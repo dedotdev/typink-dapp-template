@@ -4,7 +4,7 @@ import { GithubSvgIcon, XSvgIcon } from '@/components/shared/icons.tsx';
 
 export default function MainFooter() {
   return (
-    <Box borderTop={1} borderStyle='solid' borderColor='gray.200'>
+    <Box borderTop={1} borderStyle='solid' borderColor='var(--chakra-colors-chakra-border-color)'>
       <Flex
         maxWidth='container.lg'
         px={4}

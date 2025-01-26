@@ -2,6 +2,7 @@ import { Box, Button, Flex, Menu, MenuButton, MenuDivider, MenuItem, MenuList, T
 import { useEffect, useMemo } from 'react';
 import WalletSelection, { ButtonStyle } from '@/components/shared/WalletSelection.tsx';
 import { shortenAddress } from '@/utils/string.ts';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { formatBalance, useBalances, useTypink } from 'typink';
 
 function ConnectedWallet() {
@@ -39,7 +40,7 @@ export default function AccountSelection() {
   return (
     <Box>
       <Menu autoSelect={false}>
-        <MenuButton as={Button} variant='outline'>
+        <MenuButton as={Button} variant='outline' rightIcon={<ChevronDownIcon boxSize='5' />}>
           <Flex align='center' gap={2}>
             <Text fontWeight='semi-bold' fontSize='md'>
               {name}

@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useSubConnectV2 } from '@/providers/SubConnectV2Provider.tsx';
 import { useTalismanConnect } from '@/providers/TalismanConnectProvider.tsx';
 import { shortenAddress } from '@/utils/string.ts';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { formatBalance, useBalances, useTypink } from 'typink';
 
 function ConnectedWallet() {
@@ -43,7 +44,7 @@ export function AccountSelectionTalismanConnect() {
   return (
     <Box>
       <Menu autoSelect={false}>
-        <MenuButton as={Button} variant='outline'>
+        <MenuButton as={Button} variant='outline' rightIcon={<ChevronDownIcon boxSize='5' />}>
           <Flex align='center' gap={2}>
             <Text fontWeight='semi-bold' fontSize='md'>
               {name}
