@@ -44,7 +44,7 @@ export default function AccountSelection() {
             <Text fontWeight='semi-bold' fontSize='md'>
               {name}
             </Text>
-            <Text fontSize='sm' fontWeight='400'>
+            <Text fontSize='sm' fontWeight='400' display={{ base: 'none', md: 'inline' }}>
               ({shortenAddress(address)})
             </Text>
           </Flex>

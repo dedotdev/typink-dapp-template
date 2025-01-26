@@ -73,7 +73,7 @@ export default function WalletSelection({
         </MenuItem>
       )}
       {buttonStyle === ButtonStyle.BUTTON && (
-        <Button size='md' variant='outline' onClick={onOpen} {...buttonProps}>
+        <Button size='md' colorScheme='primary' onClick={onOpen} {...buttonProps}>
           {buttonLabel}
         </Button>
       )}

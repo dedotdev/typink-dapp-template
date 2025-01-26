@@ -21,7 +21,8 @@ export default function MainHeader() {
         h={16}>
         <a href='/'>
           <Box>
-            <Image h={6} src='/typink-logo.png' />
+            <Image h={6} src='/typink-text-logo.png' display={{ base: 'none', md: 'block' }} />
+            <Image h={6} src='/typink-logo.png' display={{ base: 'block', md: 'none' }} />
           </Box>
         </a>
         <Flex gap={2}>

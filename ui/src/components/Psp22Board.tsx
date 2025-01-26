@@ -43,7 +43,7 @@ export default function Psp22Board() {
   const mintNewToken = async () => {
     if (!tokenDecimal) return;
 
-    const toaster = txToaster('Signing transaction...');
+    const toaster = txToaster();
     try {
       await mintTx.signAndSend({
         args: [BigInt(100 * Math.pow(10, tokenDecimal))],
@@ -58,7 +58,6 @@ export default function Psp22Board() {
         },
       });
     } catch (e: any) {
-      console.error(e);
       toaster.onError(e);
     }
   };

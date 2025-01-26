@@ -6,16 +6,20 @@ export type TxToaster = {
   onError: (e: Error) => void;
 };
 
-export function txToaster(initialMessage: string = 'Signing transaction...'): TxToaster {
+const getBlockInfo = (status: TxStatus) => {
+  if (status.type === 'BestChainBlockIncluded' || status.type === 'Finalized') {
+    return `(#${status.value.blockNumber} / ${status.value.txIndex})`;
+  }
+
+  if ((status.type === 'Invalid' || status.type === 'Drop') && status.value.error) {
+    return `(${status.value.error})`;
+  }
+
+  return '';
+};
+
+export function txToaster(initialMessage: string = 'Signing Transaction...'): TxToaster {
   const toastId = toast.info(initialMessage, { autoClose: false, isLoading: true });
-
-  const getBlockInfo = (status: TxStatus) => {
-    if (status.type === 'BestChainBlockIncluded' || status.type === 'Finalized') {
-      return `(#${status.value.blockNumber} / ${status.value.txIndex})`;
-    }
-
-    return '';
-  };
 
   const updateTxStatus = (status: TxStatus) => {
     let toastType: TypeOptions = 'default';
@@ -24,11 +28,11 @@ export function txToaster(initialMessage: string = 'Signing transaction...'): Tx
     if (status.type === 'Finalized') {
       toastType = 'success';
       autoClose = 5_000;
-      toastMessage = 'Transaction successful';
+      toastMessage = 'Transaction Successful';
     } else if (status.type === 'Invalid' || status.type === 'Drop') {
       toastType = 'error';
       autoClose = 5_000;
-      toastMessage = 'Transaction failed';
+      toastMessage = 'Transaction Failed';
     }
 
     const toastOptions: UpdateOptions = {
