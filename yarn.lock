@@ -4346,7 +4346,7 @@ __metadata:
   resolution: "contracts@workspace:contracts"
   dependencies:
     dedot: "npm:^0.6.1"
-    typink: "npm:0.0.1-alpha.3"
+    typink: "npm:0.0.1-alpha.4"
   languageName: unknown
   linkType: soft
 
@@ -8118,15 +8118,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"typink@npm:0.0.1-alpha.3":
-  version: 0.0.1-alpha.3
-  resolution: "typink@npm:0.0.1-alpha.3"
+"typink@npm:0.0.1-alpha.4":
+  version: 0.0.1-alpha.4
+  resolution: "typink@npm:0.0.1-alpha.4"
   dependencies:
     dedot: "npm:^0.6.1"
     fast-deep-equal: "npm:^3.1.3"
     react: "npm:^18.3.1"
     react-use: "npm:^17.6.0"
-  checksum: 10/e6711bc9a3dadee667ba36287c029b96f2e00a6eade89bab716f28917dd393acbe5ff3e2fe805d294ac7e9679408ffec4c56d99d59b7f000fd5b58c541fb24da
+  checksum: 10/b1a24afdfd8dc7996901a718fd1780be079b9eb7862b37c9d06b90a4ec04372ecd89098a518b9c3d5603a33b3136209c49b6d1567ce8c1766f5656ffc8974ac4
   languageName: node
   linkType: hard
 
@@ -8173,7 +8173,7 @@ __metadata:
     react-toastify: "npm:^9.1.3"
     react-use: "npm:^17.6.0"
     rollup-plugin-analyzer: "npm:^4.0.0"
-    typink: "npm:0.0.1-alpha.3"
+    typink: "npm:0.0.1-alpha.4"
     vite: "npm:^5.4.11"
     vite-tsconfig-paths: "npm:^4.3.2"
     vitest: "npm:^0.34.6"

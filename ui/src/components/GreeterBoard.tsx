@@ -26,18 +26,19 @@ export default function GreetBoard() {
     try {
       await setMessageTx.signAndSend({
         args: [message],
-        callback: ({ status }) => {
+        callback: (result) => {
+          const { status } = result;
           console.log(status);
 
           if (status.type === 'BestChainBlockIncluded') {
             setMessage('');
           }
 
-          toaster.updateTxStatus(status);
+          toaster.onTxProgress(result);
         },
       });
     } catch (e: any) {
-      toaster.onError(e);
+      toaster.onTxError(e);
     }
   };
 

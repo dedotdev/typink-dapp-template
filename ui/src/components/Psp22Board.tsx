@@ -47,18 +47,19 @@ export default function Psp22Board() {
     try {
       await mintTx.signAndSend({
         args: [BigInt(100 * Math.pow(10, tokenDecimal))],
-        callback: ({ status }) => {
+        callback: (result) => {
+          const { status } = result;
           console.log(status);
 
           if (status.type === 'BestChainBlockIncluded') {
             refreshTotalSupply();
           }
 
-          toaster.updateTxStatus(status);
+          toaster.onTxProgress(result);
         },
       });
     } catch (e: any) {
-      toaster.onError(e);
+      toaster.onTxError(e);
     }
   };
 
