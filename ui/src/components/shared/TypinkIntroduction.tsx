@@ -1,6 +1,5 @@
 import { Box, Button, Divider, Flex, Heading, Image, Link, List, ListIcon, ListItem, Text } from '@chakra-ui/react';
 import { GithubSvgIcon } from '@/components/shared/icons.tsx';
-import { CheckIcon } from '@chakra-ui/icons';
 
 export default function TypinkIntroduction() {
   return (
